@@ -6,11 +6,10 @@ public class Game {
     	whitesTurn = true;
     }
     
-    public void move(int fromX, int fromY, int toX, int toY){
+    public static void move(int fromX, int fromY, int toX, int toY){
     	board.setSpot(toX, toY, board.getSpot(fromX, fromY).piece);
     	board.deleteSpot(fromX, fromY);
     }
-    
     public void setDanger(){
     	for(int x = 0; x<8; x++){
     		for(int y = 0; y<8; y++){

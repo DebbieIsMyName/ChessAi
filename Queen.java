@@ -32,7 +32,7 @@ public class Queen extends Piece{
 		//left
 			running = true;
 			tempX = x;
-			while(tempX-->0 && running){
+			while(tempX-- > 0 && running){
 				if(Game.board.spots[tempX][y].isOccupied()){
 					canMove(super.white,tempX,y);
 					running = false;

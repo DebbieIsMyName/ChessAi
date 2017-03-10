@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Board {
     public Spot[][] spots;
 
@@ -88,12 +90,15 @@ public static final String ANSI_WHITE = "\u001B[37m";
     }
     
     public void moveOptions(int x, int y){
+    	
+    	
     	if(!spots[x][y].isOccupied())
     		System.out.println("Error: choose a piece");
     	else if(x>7 || x<0 || y>7 || y<0)
     		System.out.println("Error: off board");
-    	else
+    	else{
     		spots[x][y].piece.moveOptions(x, y);
+    	}
     }
     
     public void resetDanger(){
@@ -102,5 +107,32 @@ public static final String ANSI_WHITE = "\u001B[37m";
 	    		if(spots[x][y].isOccupied())
 	    			spots[x][y].piece.inDanger = false;
     }
+  
+ // piece value board should look like this: 
+    /*
+    6 5 4 3 3 4 5 6 
+    5 4 3 2 2 3 4 5 
+    4 3 2 1 1 2 3 4 
+    3 2 1 0 0 1 2 3 
+    3 2 1 0 0 1 2 3 
+    4 3 2 1 1 2 3 4 
+    5 4 3 2 2 3 4 5 
+    6 5 4 3 3 4 5 6 
+    */
+	public int spotVal(int x, int y){
+		return spotVal(x) + spotVal(y);
+		
+	}
+	private static int spotVal(int x){
+		x-=4;
+		if(x == 0 || x == -1)
+			return 0;
+		else if(x < 0)
+			return (Math.abs(x) -1);
+		else
+			return x;
+		
+
+		}
 
 }
